@@ -39,7 +39,7 @@ app.post("/buzzer-voice", twilio.webhook(), function (req, res) {
   console.log('received message');
   const twiml = new twilio.TwimlResponse();
   twiml.dial({action: "/result"}, function () {
-    OWNER_NUMBERS.foreach(n => this.number(n));
+    OWNER_NUMBERS.forEach(n => this.number(n));
   });
   res.send(twiml);
 });
