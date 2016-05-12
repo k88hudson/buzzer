@@ -20,6 +20,8 @@ Please look at README.md for more info.
 const OWNER_NUMBERS = process.env.OWNER_NUMBERS.split(",");
 const app = express();
 
+console.log(OWNER_NUMBERS);
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
