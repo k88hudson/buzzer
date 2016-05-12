@@ -4,7 +4,18 @@ const bodyParser = require("body-parser");
 const env = require("node-env-file");
 const twilio = require("twilio");
 
-env(path.join(__dirname, ".env"));
+env(path.join(__dirname, ".env"), {raise: false});
+
+if (!process.env.OWNER_NUMBERS || !process.env.TWILIO_AUTH_TOKEN) {
+  console.error(`You must configure this app with the following variables:
+
+  OWNER_NUMBERS
+  TWILIO_AUTH_TOKEN
+
+Please look at README.md for more info.
+`);
+  throw new Error("E_MISSING_REQUIRED_ENV");
+}
 
 const OWNER_NUMBERS = process.env.OWNER_NUMBERS.split(",");
 const app = express();
