@@ -44,6 +44,14 @@ app.post("/buzzer-voice", twilio.webhook(), function (req, res) {
   res.send(twiml);
 });
 
+app.get("/buzzer-voice-auto", twilio.webhook(), function (req, res) {
+  const twiml = new twilio.TwimlResponse();
+  twiml.dial({action: "/result"}, (node) => {
+    node.number({sendDigits: 9});
+  });
+  res.send(twiml);
+});
+
 app.post("/buzzer", twilio.webhook(), function (req, res) {
   const twiml = new twilio.TwimlResponse();
   twiml.message("We are working on it!");
