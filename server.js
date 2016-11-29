@@ -46,7 +46,9 @@ app.post("/buzzer-voice", twilio.webhook(), function (req, res) {
 
 app.post("/buzzer-voice-auto", twilio.webhook(), function (req, res) {
   const twiml = new twilio.TwimlResponse();
-  twiml.play({digits: "www9www99999www99999"});
+  twiml
+    .play({digits: "www9www99999www99999"})
+    .sms("testing 123", {to: OWNER_NUMBERS[0]});
   res.send(twiml);
 });
 
